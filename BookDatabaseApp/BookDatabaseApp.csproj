@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+	  
+<!--	<PublishAot>true</PublishAot>-->
+	<PublishAot>false</PublishAot>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.0.5" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.0.5" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="12.0.5" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="12.0.5" />
+    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3">
+      <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+      <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Classic.Avalonia.Theme" Version="12.0.1-beta1" />
+    <PackageReference Include="Classic.Avalonia.Theme.Dock" Version="12.0.1-beta1" />
+    <PackageReference Include="Classic.CommonControls.Avalonia" Version="12.0.1-beta1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.12" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.12" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Assets\Icons\*.gif" />
+		<AvaloniaResource Include="Assets\Icons\*.gif" />
+		<None Remove="Assets\Icons\cpl\*.gif" />
+		<AvaloniaResource Include="Assets\Icons\cpl\*.gif" />
+		<None Remove="Assets\Icons\avalonia.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\ActionSelectionView.axaml.cs">
+	    <DependentUpon>ActionSelectionView.axaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Views\CRUD\CreateView.axaml.cs">
+	    <DependentUpon>PhoneLoginView.axaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	</ItemGroup>
+</Project>

@@ -1,0 +1,130 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:crud="clr-namespace:BookDatabaseApp.ViewModels.CRUD"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="BookDatabaseApp.Views.CRUD.CreateView"
+             x:DataType="crud:CreateViewModel">
+    
+    <Grid RowDefinitions="40, *, 60">
+        
+        <TextBlock Text="Добавить книгу в базу данных"
+                   FontSize="32"
+                   FontWeight="DemiBold"
+                   Foreground="DarkBlue"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextWrapping="WrapWithOverflow"
+                   Grid.Row="0"/>
+
+        <Grid VerticalAlignment="Top"
+                     Margin="25"
+                     RowDefinitions="Auto, Auto, Auto, Auto, *"
+                     RowSpacing="10"
+                     Grid.Row="1">
+
+            <!-- <TextBlock Text="{CompiledBinding Test}" -->
+            <!--            FontSize="32" -->
+            <!--            Foreground="Black" -->
+            <!--            HorizontalAlignment="Center" -->
+            <!--            Margin="5"/> -->
+            
+            <Grid ColumnDefinitions="175, *"
+                  Grid.Row="0">
+                <TextBlock Text="Авторы"
+                           FontSize="24"
+                           Grid.Column="0"/>
+                <TextBox Text="{CompiledBinding Authors}" 
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         FontSize="18"
+                         PlaceholderText="введите авторов книги"
+                         Grid.Column="1"/>
+            </Grid>
+            
+            <Grid ColumnDefinitions="175, *"
+                  Grid.Row="1">
+                <TextBlock Text="Название"
+                           FontSize="24"
+                           Grid.Column="0"/>
+                <TextBox Text="{CompiledBinding Title}" 
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         FontSize="18"
+                         PlaceholderText="введите название книги"
+                         Grid.Column="1"/>
+            </Grid>
+            
+            <Grid ColumnDefinitions="175, *"
+                  Grid.Row="2">
+                <TextBlock Text="Издательство"
+                           FontSize="24"
+                           Grid.Column="0"/>
+                <TextBox Text="{CompiledBinding Publisher}" 
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         FontSize="18"
+                         PlaceholderText="введите название издательства"
+                         Grid.Column="1"/>
+            </Grid>
+            
+            <Grid ColumnDefinitions="175, *"
+                  Grid.Row="3">
+                <TextBlock Text="Год издания"
+                           FontSize="24"
+                           Grid.Column="0"/>
+                <TextBox Text="{CompiledBinding PublishYear}" 
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         FontSize="18"
+                         PlaceholderText="введите год издания книги"
+                         Grid.Column="1"/>
+            </Grid>
+            
+            <Grid ColumnDefinitions="175, *"
+                  Grid.Row="4">
+                <TextBlock Text="Аннотация"
+                           FontSize="24"
+                           Grid.Column="0"/>
+                <TextBox Text="{CompiledBinding Annotation}" 
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         FontSize="18"
+                         PlaceholderText="введите аннотацию к книге"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         Grid.Column="1"/>
+            </Grid>
+        </Grid>
+        
+        <Button Margin="25, 5"
+                Grid.Row="2"
+                Command="{CompiledBinding AddToDbCommand}">
+            <TextBlock Text="Добавить в базу данных"
+                       FontSize="18"/>
+        </Button>
+        
+        <!-- <Grid Grid.ColumnDefinitions="Auto, *, *" -->
+        <!--       Grid.Row="2"> -->
+        <!--     <TextBlock Text="Книга добавлена в БД" -->
+        <!--                FontSize="18" -->
+        <!--                FontWeight="Bold" -->
+        <!--                VerticalAlignment="Center" -->
+        <!--                Foreground="Green" -->
+        <!--                Margin="10" -->
+        <!--                Grid.Column="0"/> -->
+        <!--     <Button Margin="5" -->
+        <!--             Grid.Column="1"> -->
+        <!--         <TextBlock Text="Изменить" -->
+        <!--                    FontSize="14"/> -->
+        <!--     </Button> -->
+        <!--     <Button Margin="5" -->
+        <!--             Grid.Column="2"> -->
+        <!--         <TextBlock Text="Удалить" -->
+        <!--                    FontSize="14"/> -->
+        <!--     </Button> -->
+        <!-- </Grid> -->
+        
+    </Grid>
+</UserControl>

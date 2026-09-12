@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:BookDatabaseApp.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="BookDatabaseApp.Views.ActionSelectionView"
+             x:DataType="vm:ActionSelectionViewModel">
+    
+    <ClassicBorderDecorator BorderStyle="Etched" 
+                            BorderThickness="2"
+                            Width="400"
+                            Height="300"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+            
+        <Grid RowDefinitions="50, *">
+            
+            <TextBlock Text="Book Database"
+                       FontSize="32"
+                       FontWeight="DemiBold"
+                       Foreground="DarkBlue"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.Row="0"/>
+
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="125"
+                        Grid.Row="1">
+            
+                <Button Content="Create"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Height="40"
+                        Margin="5" 
+                        Command="{CompiledBinding CreateCommand}"/>
+
+                <Button Content="Read"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center" 
+                        Height="40"
+                        Margin="5" 
+                        Command="{CompiledBinding ReadCommand}"/>        
+                
+                <Button Content="Update"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center" 
+                        Height="40"
+                        Margin="5" 
+                        Command="{CompiledBinding UpdateCommand}"/>        
+                
+                <Button Content="Delete"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center" 
+                        Height="40"
+                        Margin="5" 
+                        Command="{CompiledBinding DeleteCommand}"/>        
+            
+            </StackPanel>
+
+        </Grid>
+
+    </ClassicBorderDecorator>
+
+</UserControl>

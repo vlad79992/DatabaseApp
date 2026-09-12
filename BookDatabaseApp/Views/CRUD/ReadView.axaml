@@ -1,0 +1,180 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:crud="clr-namespace:BookDatabaseApp.ViewModels.CRUD"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="BookDatabaseApp.Views.CRUD.ReadView"
+             x:DataType="crud:ReadViewModel">
+    
+    <Design.DataContext>
+        <crud:ReadViewModel/>
+    </Design.DataContext>
+    
+    <Grid RowDefinitions="25, Auto, *"
+          Margin="10">
+        
+        <Grid ColumnDefinitions="25*, 2, 75*, 2, 100*, 2, 75*, 2, 50*, 2, 100*"
+              Grid.Row="0"
+              Margin="0, 0, 16, 0">
+            
+            <TextBlock Text="ID"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.Column="0"/>
+            <Grid ColumnDefinitions="1,1" VerticalAlignment="Stretch"
+                  Grid.Column="1">
+                <Border Grid.Column="0" Width="1" Background="Gray"/>
+                <Border Grid.Column="1" Width="1" Background="White"/>
+            </Grid>
+            
+            <TextBlock Text="Авторы"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.Column="2"/>
+            <Grid ColumnDefinitions="1,1" VerticalAlignment="Stretch"
+                  Grid.Column="3">
+                <Border Grid.Column="0" Width="1" Background="Gray"/>
+                <Border Grid.Column="1" Width="1" Background="White"/>
+            </Grid>
+            
+            <TextBlock Text="Название"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.Column="4"/>
+            <Grid ColumnDefinitions="1,1" VerticalAlignment="Stretch"
+                  Grid.Column="5">
+                <Border Grid.Column="0" Width="1" Background="Gray"/>
+                <Border Grid.Column="1" Width="1" Background="White"/>
+            </Grid>
+            
+            <TextBlock Text="Издательство"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.Column="6"/>
+            <Grid ColumnDefinitions="1,1" VerticalAlignment="Stretch"
+                  Grid.Column="7">
+                <Border Grid.Column="0" Width="1" Background="Gray"/>
+                <Border Grid.Column="1" Width="1" Background="White"/>
+            </Grid>
+            
+            <TextBlock Text="Год издания"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.Column="8"/>
+            <Grid ColumnDefinitions="1,1" VerticalAlignment="Stretch"
+                  Grid.Column="9">
+                <Border Grid.Column="0" Width="1" Background="Gray"/>
+                <Border Grid.Column="1" Width="1" Background="White"/>
+            </Grid>
+            
+            <TextBlock Text="Аннотация"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.Column="10"/>
+            
+        </Grid>
+        
+        <Separator Grid.Row="1"/>
+        
+        <ScrollViewer Grid.Row="2"
+                      VerticalScrollBarVisibility="Visible">
+            <ItemsControl ItemsSource="{Binding Books}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="25*, 2, 75*, 2, 100*, 2, 75*, 2, 50*, 2, 100*"
+                              RowDefinitions="*, Auto">
+                    
+                            <TextBlock Text="{Binding Id}" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       TextWrapping="NoWrap"
+                                       TextTrimming="CharacterEllipsis"
+                                       Grid.Column="0"
+                                       Grid.Row="0"/>
+                            <Grid ColumnDefinitions="1,1" VerticalAlignment="Stretch"
+                                  Grid.Column="1"
+                                  Grid.Row="0">
+                                <Border Grid.Column="0" Width="1" Background="Gray"/>
+                                <Border Grid.Column="1" Width="1" Background="White"/>
+                            </Grid>
+                            
+                            <TextBlock Text="{Binding Authors}" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       TextWrapping="NoWrap"
+                                       TextTrimming="CharacterEllipsis"
+                                       Grid.Column="2"
+                                       Grid.Row="0"/>
+                            <Grid ColumnDefinitions="1,1" VerticalAlignment="Stretch"
+                                  Grid.Column="3"
+                                  Grid.Row="0">
+                                <Border Grid.Column="0" Width="1" Background="Gray"/>
+                                <Border Grid.Column="1" Width="1" Background="White"/>
+                            </Grid>
+                    
+                            <TextBlock Text="{Binding Title}" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       TextWrapping="NoWrap"
+                                       TextTrimming="CharacterEllipsis"
+                                       Grid.Column="4"
+                                       Grid.Row="0"/>
+                            <Grid ColumnDefinitions="1,1" VerticalAlignment="Stretch"
+                                  Grid.Column="5"
+                                  Grid.Row="0">
+                                <Border Grid.Column="0" Width="1" Background="Gray"/>
+                                <Border Grid.Column="1" Width="1" Background="White"/>
+                            </Grid>
+                    
+                            <TextBlock Text="{Binding Publisher}" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       TextWrapping="NoWrap"
+                                       TextTrimming="CharacterEllipsis"
+                                       Grid.Column="6"
+                                       Grid.Row="0"/>
+                            <Grid ColumnDefinitions="1,1" VerticalAlignment="Stretch"
+                                  Grid.Column="7"
+                                  Grid.Row="0">
+                                <Border Grid.Column="0" Width="1" Background="Gray"/>
+                                <Border Grid.Column="1" Width="1" Background="White"/>
+                            </Grid>
+                    
+                            <TextBlock Text="{Binding PublishYear}" 
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="NoWrap"
+                                       TextTrimming="CharacterEllipsis"
+                                       Grid.Column="8"
+                                       Grid.Row="0"/>
+                            <Grid ColumnDefinitions="1,1" VerticalAlignment="Stretch"
+                                  Grid.Column="9"
+                                  Grid.Row="0">
+                                <Border Grid.Column="0" Width="1" Background="Gray"/>
+                                <Border Grid.Column="1" Width="1" Background="White"/>
+                            </Grid>
+                            
+                            <TextBlock Text="{Binding Annotation}" 
+                                       VerticalAlignment="Center"
+                                       TextWrapping="NoWrap"
+                                       TextTrimming="CharacterEllipsis"
+                                       Grid.Column="10"
+                                       Grid.Row="0"/>
+                            
+                            <Separator Grid.Row="1"
+                                       Grid.ColumnSpan="11" 
+                                       Grid.Column="0" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        
+    </Grid>
+</UserControl>

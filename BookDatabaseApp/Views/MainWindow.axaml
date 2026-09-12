@@ -1,0 +1,122 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:BookDatabaseApp.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:commonControls="using:Classic.CommonControls"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="BookDatabaseApp.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="Book database">
+        <!--Icon="/Assets/avalonia-logo.ico"-->
+
+    <DockPanel Margin="0,1,0,0">
+
+        <ClassicBorderDecorator DockPanel.Dock="Top" BorderThickness="2" BorderStyle="Etched">
+
+            <DockPanel Margin="0,2">
+            
+                <StackPanel DockPanel.Dock="Top">
+
+                    <Menu>
+                        <MenuItem Header="Файл" />
+                        <MenuItem Header="Правка" />
+                        <MenuItem Header="Вид" />
+                        <MenuItem Header="Переход" />
+                        <MenuItem Header="Избранное" />
+                        <MenuItem Header="Справка" />
+                    </Menu>
+
+                    <Separator/>
+
+                    <commonControls:ToolBar TextPlacement="Down" Size="Large" GrayscaleIcons="True">
+
+                        <commonControls:RebarHandle />
+                    
+                        <commonControls:ToolBarButton Text="Назад" 
+                                                      LargeIcon="/Assets/Icons/back24.gif" 
+                                                      SmallIcon="/Assets/Icons/back16.gif" 
+                                                      Command="{CompiledBinding GoBackCommand}"/>
+
+                        <commonControls:ToolBarButton Text="Вперёд" 
+                                                      LargeIcon="/Assets/Icons/forward24.gif" 
+                                                      SmallIcon="/Assets/Icons/forward16.gif" 
+                                                      Command="{CompiledBinding GoForwardCommand}" />
+
+                         <commonControls:ToolBarButton Text="Остановить" 
+                                                       LargeIcon="/Assets/Icons/stop24.gif" 
+                                                       SmallIcon="/Assets/Icons/stop16.gif" 
+                                                       Click="Stop" />
+                 
+                        <commonControls:ToolBarButton Text="Обновить" 
+                                                      LargeIcon="/Assets/Icons/refresh24.gif" 
+                                                      SmallIcon="/Assets/Icons/refresh16.gif" 
+                                                      Click="Refresh" />
+                 
+                        <commonControls:ToolBarButton Text="Домой" 
+                                                      LargeIcon="/Assets/Icons/home24.gif" 
+                                                      SmallIcon="/Assets/Icons/home16.gif"
+                                                      Command="{CompiledBinding GoHomeCommand}" />
+
+                        <Separator />
+
+                        <!--<commonControls:ToolBarButton IsToggleButton="True" IsChecked="{CompiledBinding IsSearchOpened}" PreferText="True" Text="Search" LargeIcon="Icons/search24.gif" SmallIcon="Icons/search16.gif" Click="Search" />-->
+                        <commonControls:ToolBarButton IsToggleButton="True" IsChecked="False" PreferText="True" Text="Поиск" LargeIcon="/Assets/Icons/search24.gif" />
+
+                    </commonControls:ToolBar>
+
+                    <Separator/>
+
+                    <commonControls:ToolBar TextPlacement="Right" Size="Small" GrayscaleIcons="True">
+                        <commonControls:RebarHandle />
+                        <Label HorizontalAlignment="Left">Адрес</Label>
+                        <TextBox HorizontalAlignment="Stretch" Text="{CompiledBinding CurrentPageName}" VerticalContentAlignment="Center" IsReadOnly="True"/>
+                        <commonControls:ToolBarButton SmallIcon="/Assets/Icons/go16.gif" Text="Переход" />
+                    </commonControls:ToolBar>
+
+                    <Separator/>
+
+                </StackPanel>
+
+                <!--<TransitioningContentControl Content="{CompiledBinding CurrentPage}" />-->
+            </DockPanel>
+
+        </ClassicBorderDecorator>
+        
+        <commonControls:StatusBar DockPanel.Dock="Bottom" Margin="0,2,0,0">
+            <commonControls:StatusBarItem commonControls:StatusBar.Size="*">
+                <Image Source="/Assets/Icons/page16.gif" Width="16" Height="16" HorizontalAlignment="Left" Margin="0,-2,0,0" />
+            </commonControls:StatusBarItem>
+
+            <commonControls:StatusBarItem commonControls:StatusBar.Size="100" Padding="0">
+                <ProgressBar IsIndeterminate="False"
+                             Value="42"
+                             Minimum="0"
+                             Maximum="100"
+                             BorderThickness="0"
+                             MinHeight="0"
+                             VerticalAlignment="Stretch"
+                             HorizontalAlignment="Stretch" />
+            </commonControls:StatusBarItem>
+            <commonControls:StatusBarItem commonControls:StatusBar.Size="24">
+            </commonControls:StatusBarItem>
+            <commonControls:StatusBarItem commonControls:StatusBar.Size="24">
+            </commonControls:StatusBarItem>
+            <commonControls:StatusBarItem commonControls:StatusBar.Size="100">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Assets/Icons/cpl/4490@32.gif" Width="16" Height="16" Margin="0,-2,0,0" />
+                    <TextBlock VerticalAlignment="Center">SQLite</TextBlock>
+                </StackPanel>
+            </commonControls:StatusBarItem>
+        </commonControls:StatusBar>
+    
+        <Grid ColumnDefinitions="Auto,0,*" Name="MainGrid">
+            <GridSplitter Grid.Column="1" />
+            <ClassicBorderDecorator BorderStyle="Sunken" BorderThickness="2" Grid.Column="2" Margin="2">
+                <TransitioningContentControl Content="{CompiledBinding CurrentPage}" />
+            </ClassicBorderDecorator>
+        </Grid>
+
+    </DockPanel>
+
+</Window>
