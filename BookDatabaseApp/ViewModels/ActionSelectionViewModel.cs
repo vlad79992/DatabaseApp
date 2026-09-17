@@ -1,39 +1,28 @@
+using System;
 using BookDatabaseApp.Services;
+using BookDatabaseApp.ViewModels.CRUD;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BookDatabaseApp.ViewModels;
 
-public partial class ActionSelectionViewModel : ViewModelBase, INamed
+public partial class ActionSelectionViewModel(INavigationService navigation, IServiceProvider serviceProvider) : ViewModelBase, INamed
 {
-    private readonly INavigationService? navigationService;
+    private readonly INavigationService? navigationService = navigation;
+    private readonly IServiceProvider _serviceProvider = serviceProvider;
     public string PageName => this.GetType().FullName!;
 
     [RelayCommand]
     public void Create()
     {
-        navigationService?.NavigateTo<CRUD.CreateViewModel>();
+        var createViewModel = ActivatorUtilities.CreateInstance<CreateViewModel>(_serviceProvider);
+        navigationService?.NavigateTo(createViewModel);
     }
 
     [RelayCommand]
     public void Read()
     {
-        navigationService?.NavigateTo<CRUD.ReadViewModel>();
-    }
-
-    [RelayCommand]
-    public void Update()
-    {
-        
-    }
-
-    [RelayCommand]
-    public void Delete()
-    {
-        
-    }
-    
-    public ActionSelectionViewModel(INavigationService navigation)
-    {
-        navigationService = navigation;
+        var readViewModel = ActivatorUtilities.CreateInstance<ReadViewModel>(_serviceProvider);
+        navigationService?.NavigateTo(readViewModel);
     }
 }

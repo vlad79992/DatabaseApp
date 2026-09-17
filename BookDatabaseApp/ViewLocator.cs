@@ -7,6 +7,8 @@ using BookDatabaseApp.ViewModels.CRUD;
 using BookDatabaseApp.Views;
 using BookDatabaseApp.Views.CRUD;
 using CreateViewModel = BookDatabaseApp.ViewModels.CRUD.CreateViewModel;
+using EditViewModel = BookDatabaseApp.ViewModels.CRUD.EditViewModel;
+using DeleteViewModel = BookDatabaseApp.ViewModels.CRUD.DeleteViewModel;
 
 namespace BookDatabaseApp
 {
@@ -26,6 +28,8 @@ namespace BookDatabaseApp
                 ActionSelectionViewModel => new ActionSelectionView(),
                 CreateViewModel => new CreateView(),
                 ReadViewModel => new ReadView(),
+                EditViewModel => new EditView(),
+                DeleteViewModel => new DeleteView(),
                 _ => new TextBlock { Text = $"No view for {data?.GetType().Name}" }
             };
         }

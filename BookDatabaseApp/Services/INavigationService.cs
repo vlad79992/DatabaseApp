@@ -5,8 +5,7 @@ namespace BookDatabaseApp.Services;
 
 public interface INavigationService
 {
-    void NavigateTo<TViewModel>() where TViewModel : ViewModelBase;
-    void NavigateTo(Type viewModelType);
+    void NavigateTo(ViewModelBase viewModel);
     void GoBack();
     void GoForward();
     bool CanGoBack { get; }

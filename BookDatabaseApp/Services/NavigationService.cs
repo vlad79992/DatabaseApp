@@ -7,8 +7,8 @@ namespace BookDatabaseApp.Services;
 
 public class NavigationService(IServiceProvider serviceProvider) : ViewModelBase, INavigationService
 {
-    private readonly LinkedList<Type> pages = new();
-    private LinkedListNode<Type>? currentPageNode;
+    private readonly LinkedList<ViewModelBase> pages = new();
+    private LinkedListNode<ViewModelBase>? currentPageNode;
 
     public ViewModelBase? CurrentPage
     {
@@ -18,17 +18,19 @@ public class NavigationService(IServiceProvider serviceProvider) : ViewModelBase
 
     public void Initialize(Type startPage)
     {
-        pages.AddLast(startPage);
+        var startVm = (ViewModelBase)serviceProvider.GetRequiredService(startPage);
+        pages.AddLast(startVm);
         currentPageNode = pages.Last;
-        UpdateCurrentPage();
+        CurrentPage = startVm;
     }
 
-    public void NavigateTo(Type viewModelType)
+    public void NavigateTo(ViewModelBase viewModel)
     {
         while (currentPageNode?.Next is not null) pages.RemoveLast();
 
-        currentPageNode = pages.AddLast(viewModelType);
-        UpdateCurrentPage();
+        currentPageNode = pages.AddLast(viewModel);
+        CurrentPage = viewModel;
+        
         OnPropertyChanged(nameof(CanGoBack));
         OnPropertyChanged(nameof(CanGoForward));
     }
@@ -38,7 +40,8 @@ public class NavigationService(IServiceProvider serviceProvider) : ViewModelBase
         if (currentPageNode?.Previous is not null)
         {
             currentPageNode = currentPageNode.Previous;
-            UpdateCurrentPage();
+            CurrentPage = currentPageNode.Value;
+            
             OnPropertyChanged(nameof(CanGoBack));
             OnPropertyChanged(nameof(CanGoForward));
         }
@@ -49,7 +52,8 @@ public class NavigationService(IServiceProvider serviceProvider) : ViewModelBase
         if (currentPageNode?.Next is not null)
         {
             currentPageNode = currentPageNode.Next;
-            UpdateCurrentPage();
+            CurrentPage = currentPageNode.Value;
+            
             OnPropertyChanged(nameof(CanGoBack));
             OnPropertyChanged(nameof(CanGoForward));
         }
@@ -57,17 +61,4 @@ public class NavigationService(IServiceProvider serviceProvider) : ViewModelBase
 
     public bool CanGoBack => currentPageNode?.Previous is not null;
     public bool CanGoForward => currentPageNode?.Next is not null;
-
-    private void UpdateCurrentPage()
-    {
-        if (currentPageNode?.Value != null)
-        {
-            CurrentPage = (ViewModelBase)serviceProvider.GetRequiredService(currentPageNode.Value);
-        }
-    }
-
-    public void NavigateTo<TViewModel>() where TViewModel : ViewModelBase
-    {
-        NavigateTo(typeof(TViewModel));
-    }
 }

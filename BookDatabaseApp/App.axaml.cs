@@ -33,13 +33,17 @@ namespace BookDatabaseApp
             services.AddTransient<ActionSelectionViewModel>();
             services.AddTransient<ViewModels.CRUD.CreateViewModel>();
             services.AddTransient<ViewModels.CRUD.ReadViewModel>();
+            services.AddTransient<ViewModels.CRUD.EditViewModel>();
+            services.AddTransient<ViewModels.CRUD.DeleteViewModel>();
 
             services.AddSingleton<MainWindowViewModel>();
 
             serviceProvider = services.BuildServiceProvider();
 
             var context = serviceProvider.GetRequiredService<BookContext>();
-            //context.Database.Migrate();
+            
+            context.Database.Migrate();
+            
             _ = context.Set<Book>().AsNoTracking().Take(1).ToListAsync().Result;
             
             var navService = serviceProvider.GetRequiredService<NavigationService>();

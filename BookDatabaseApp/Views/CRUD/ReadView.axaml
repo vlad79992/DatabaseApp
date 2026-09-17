@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:crud="clr-namespace:BookDatabaseApp.ViewModels.CRUD"
+             xmlns:models="clr-namespace:BookDatabaseApp.Models"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="BookDatabaseApp.Views.CRUD.ReadView"
              x:DataType="crud:ReadViewModel">
@@ -14,7 +15,7 @@
     <Grid RowDefinitions="25, Auto, *"
           Margin="10">
         
-        <Grid ColumnDefinitions="25*, 2, 75*, 2, 100*, 2, 75*, 2, 50*, 2, 100*"
+        <Grid ColumnDefinitions="25*, 2, 75*, 2, 100*, 2, 75*, 2, 50*, 2, 100*, 2, 125"
               Grid.Row="0"
               Margin="0, 0, 16, 0">
             
@@ -72,6 +73,16 @@
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Grid.Column="10"/>
+            <Grid ColumnDefinitions="1,1" VerticalAlignment="Stretch"
+                  Grid.Column="11">
+                <Border Grid.Column="0" Width="1" Background="Gray"/>
+                <Border Grid.Column="1" Width="1" Background="White"/>
+            </Grid>
+            
+            <TextBlock Text="Действия"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.Column="12"/>
             
         </Grid>
         
@@ -86,8 +97,8 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid ColumnDefinitions="25*, 2, 75*, 2, 100*, 2, 75*, 2, 50*, 2, 100*"
+                    <DataTemplate x:DataType="models:Book">
+                        <Grid ColumnDefinitions="25*, 2, 75*, 2, 100*, 2, 75*, 2, 50*, 2, 100*, 2, 125"
                               RowDefinitions="*, Auto">
                     
                             <TextBlock Text="{Binding Id}" 
@@ -166,9 +177,32 @@
                                        TextTrimming="CharacterEllipsis"
                                        Grid.Column="10"
                                        Grid.Row="0"/>
+                            <Grid ColumnDefinitions="1,1" VerticalAlignment="Stretch"
+                                  Grid.Column="11"
+                                  Grid.Row="0">
+                                <Border Grid.Column="0" Width="1" Background="Gray"/>
+                                <Border Grid.Column="1" Width="1" Background="White"/>
+                            </Grid>
+                            
+                            <StackPanel Grid.Column="12"
+                                        Grid.Row="0"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                <Button Margin="2" 
+                                        Command="{CompiledBinding $parent[UserControl].((crud:ReadViewModel)DataContext).EditCommand}" 
+                                        CommandParameter="{Binding}">
+                                    <TextBlock Text="изм." FontSize="14"/>
+                                </Button>
+                                <Button Margin="2" 
+                                        Command="{CompiledBinding $parent[UserControl].((crud:ReadViewModel)DataContext).DeleteCommand}"  
+                                        CommandParameter="{Binding}">
+                                    <TextBlock Text="уд." FontSize="14"/>
+                                </Button>
+                            </StackPanel>
                             
                             <Separator Grid.Row="1"
-                                       Grid.ColumnSpan="11" 
+                                       Grid.ColumnSpan="13" 
                                        Grid.Column="0" />
                         </Grid>
                     </DataTemplate>

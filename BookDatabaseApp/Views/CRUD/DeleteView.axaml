@@ -1,0 +1,54 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:crud="clr-namespace:BookDatabaseApp.ViewModels.CRUD"
+             x:Class="BookDatabaseApp.Views.CRUD.DeleteView"
+             x:DataType="crud:DeleteViewModel">
+    
+    <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="20">
+        <TextBlock Text="Удаление книги"
+                   FontSize="28"
+                   FontWeight="DemiBold"
+                   Foreground="DarkBlue"
+                   HorizontalAlignment="Center"
+                   Margin="0, 0, 0, 20"/>
+                   
+        <TextBlock Text="{CompiledBinding BookInfo}"
+                   FontSize="18"
+                   HorizontalAlignment="Center"
+                   Margin="0, 0, 0, 10"/>
+                   
+        <TextBlock Text="Вы действительно хотите удалить эту книгу?"
+                   FontSize="18"
+                   HorizontalAlignment="Center"
+                   IsVisible="{CompiledBinding !IsDeleted}"
+                   Margin="0, 0, 0, 20"/>
+
+        <TextBlock Text="Книга успешно удалена из базы данных."
+                   FontSize="18"
+                   Foreground="Green"
+                   HorizontalAlignment="Center"
+                   IsVisible="{CompiledBinding IsDeleted}"
+                   Margin="0, 0, 0, 20"/>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            
+            <Button Content="Подтвердить удаление"
+                    Command="{CompiledBinding ConfirmDeleteCommand}"
+                    IsVisible="{CompiledBinding !IsDeleted}"
+                    Margin="0, 0, 10, 0"/>
+
+            <Button Content="Отмена"
+                    Command="{CompiledBinding CancelCommand}"
+                    IsVisible="{CompiledBinding !IsDeleted}"/>
+                    
+            <Button Content="Список книг"
+                    Command="{CompiledBinding ReadAllCommand}"
+                    IsVisible="{CompiledBinding IsDeleted}"/>
+        </StackPanel>
+
+    </StackPanel>
+
+</UserControl>

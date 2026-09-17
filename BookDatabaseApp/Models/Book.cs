@@ -1,14 +1,11 @@
 namespace BookDatabaseApp.Models;
 
-public record Book
-(
-    int Id,
-    string Authors,
-    string Title,
-    string Publisher,
-    int PublishYear,
-    string Annotation
-)
+public class Book
 {
-    public Book() : this(0, "", "", "", 0, "") { }
+    public int Id { get; set; } = 0;
+    public string Authors { get; set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
+    public string Publisher { get; set; } = string.Empty;
+    public int PublishYear { get; set; } = 0;
+    public string Annotation { get; set; } = string.Empty;
 }

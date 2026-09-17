@@ -43,20 +43,6 @@
                         Margin="5" 
                         Command="{CompiledBinding ReadCommand}"/>        
                 
-                <Button Content="Update"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Center" 
-                        Height="40"
-                        Margin="5" 
-                        Command="{CompiledBinding UpdateCommand}"/>        
-                
-                <Button Content="Delete"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Center" 
-                        Height="40"
-                        Margin="5" 
-                        Command="{CompiledBinding DeleteCommand}"/>        
-            
             </StackPanel>
 
         </Grid>
